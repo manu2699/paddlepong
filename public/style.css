@@ -1,0 +1,7 @@
+body {
+	text-align: center;
+	padding: 70px 0;
+}
+canvas {
+	transition: 100ms ease-out;
+}

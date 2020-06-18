@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Paddle - Ping Pong</title>
+</head>
+
+<body>
+  <div class="join-container">
+    <center>
+      <header class="join-header">
+        <h1><i class="fas fa-smile"></i> Paddle - Ping Pong </h1>
+      </header>
+      <form action="play.html">
+        <!-- <label for="id">Room ID</label>
+        <input type="text" name="id" id="id" disabled />
+        <br><br> -->
+        <label for="name">Your Sweet Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter your name..." onchange=next() required />
+        <br><br>
+        <button type="submit" class="btn">Join Chat</button>
+      </form>
+    </center>
+  </div>
+</body>
+<script>
+  // window.onload = function () {
+  //   let roomId = Math.floor((Math.random() * 9999))
+  //   document.getElementById("id").value = roomId
+  // }
+  function next() {
+    var val = document.getElementById("name").value
+    console.log(val)
+    sessionStorage.setItem("name", val)
+  }
+</script>
+
+</html>
