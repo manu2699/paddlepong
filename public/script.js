@@ -15,6 +15,21 @@ var paddle2Y = 250;
 const PADDLE_THICKNESS = 10;
 const PADDLE_HEIGHT = 100;
 
+const socket = io.connect("https://paddlepong.herokuapp.com");
+
+socket.emit('join', name);
+
+socket.on('changeMade', (data) => {
+  console.log(data)
+  if (data.paddle1Y !== undefined) {
+    paddle1Y = data.paddle1Y;
+  }
+  if (data.paddle2Y !== undefined) {
+    paddle2Y = data.paddle2Y;
+  }
+});
+
+
 function computerMovement() {
   var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT / 2);
   if (ballX < canvas.width / 2) {
@@ -63,19 +78,6 @@ window.onload = function () {
   }
 
   // const socket = io.connect("http://localhost:5000");
-  const socket = io.connect("https://paddlepong.herokuapp.com");
-
-  socket.emit('join', name);
-
-  socket.on('changeMade', (data) => {
-    console.log(data)
-    if (data.paddle1Y !== undefined) {
-      paddle1Y = data.paddle1Y;
-    }
-    if (data.paddle2Y !== undefined) {
-      paddle2Y = data.paddle2Y;
-    }
-  });
 
   canvas = document.getElementById('gameCanvas');
   canvasContext = canvas.getContext('2d');
