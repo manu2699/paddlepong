@@ -69,7 +69,7 @@ window.onload = function () {
 
   socket.on('changeMade', (data) => {
     console.log(data)
-    if (data.player === 1) {
+    if (data.player === 2) {
       paddle2Y = data.paddle2Y;
     } else {
       paddle1Y = data.paddle1Y;
@@ -90,11 +90,11 @@ window.onload = function () {
     function (evt) {
       var mousePos = calculateMousePos(evt);
       if (player === 1) {
-        let Temp_paddle1Y = mousePos.y - (PADDLE_HEIGHT / 2);
-        socket.emit('change', { "paddle1Y": Temp_paddle1Y, paddle2Y, player, name })
+        paddle1Y = mousePos.y - (PADDLE_HEIGHT / 2);
+        socket.emit('change', { paddle1Y, paddle2Y, player, name })
       } else if (player === 2) {
-        let Temp_paddle2Y = mousePos.y - (PADDLE_HEIGHT / 2);
-        socket.emit('change', { paddle1Y, "paddle2Y": Temp_paddle2Y, player, name })
+        paddle2Y = mousePos.y - (PADDLE_HEIGHT / 2);
+        socket.emit('change', { paddle1Y, paddle2Y, player, name })
       }
     });
 
