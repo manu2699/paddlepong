@@ -69,8 +69,11 @@ window.onload = function () {
 
   socket.on('changeMade', (data) => {
     console.log(data)
-    paddle1Y = data.paddle1Y;
-    paddle2Y = data.paddle2Y;
+    if (data.player === 1) {
+      paddle2Y = data.paddle2Y;
+    } else {
+      paddle1Y = data.paddle1Y;
+    }
   });
 
   canvas = document.getElementById('gameCanvas');
