@@ -69,9 +69,10 @@ window.onload = function () {
 
   socket.on('changeMade', (data) => {
     console.log(data)
-    if (data.player === 1) {
+    if (data.paddle1Y !== undefined) {
       paddle1Y = data.paddle1Y;
-    } else {
+    }
+    if (data.paddle2Y !== undefined) {
       paddle2Y = data.paddle2Y;
     }
   });
