@@ -91,10 +91,10 @@ window.onload = function () {
       var mousePos = calculateMousePos(evt);
       if (player === 1) {
         paddle1Y = mousePos.y - (PADDLE_HEIGHT / 2);
-        socket.emit('change', { paddle1Y, paddle2Y, player, name })
+        socket.emit('change', { paddle1Y, player, name })
       } else if (player === 2) {
         paddle2Y = mousePos.y - (PADDLE_HEIGHT / 2);
-        socket.emit('change', { paddle1Y, paddle2Y, player, name })
+        socket.emit('change', { paddle2Y, player, name })
       }
     });
 
