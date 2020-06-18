@@ -68,12 +68,8 @@ window.onload = function () {
   socket.emit('join', name);
 
   socket.on('changeMade', (data) => {
-    if (data.player === 2) {
-      paddle2Y = data.mouse
-    } else {
-      paddle1Y = data.mouse
-    }
-    // console.log(data)
+    paddle1Y = data.paddle1Y;
+    paddle2Y = data.paddle2Y;
   });
 
   canvas = document.getElementById('gameCanvas');
@@ -90,11 +86,11 @@ window.onload = function () {
     function (evt) {
       var mousePos = calculateMousePos(evt);
       if (player === 1) {
-        paddle1Y = mousePos.y - (PADDLE_HEIGHT / 2);
-        socket.emit('change', { "mouse": paddle1Y, player, name })
+        // paddle1Y = mousePos.y - (PADDLE_HEIGHT / 2);
+        socket.emit('change', { paddle1Y, paddle2Y, player, name })
       } else if (player === 2) {
-        paddle2Y = mousePos.y - (PADDLE_HEIGHT / 2);
-        socket.emit('change', { "mouse": paddle2Y, player, name })
+        // paddle2Y = mousePos.y - (PADDLE_HEIGHT / 2);
+        socket.emit('change', { paddle1Y, paddle2Y, player, name })
       }
     });
 
