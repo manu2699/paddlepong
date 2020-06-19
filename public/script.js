@@ -42,13 +42,15 @@ window.onload = function () {
   }
 
   // const socket = io.connect("http://localhost:5000");
-  const socket = io.connect("https://paddleppong.herokuapp.com");
+  const socket = io.connect("https://paddlepong.herokuapp.com");
 
 
   socket.emit('join', name);
 
   socket.on('change-ball-get1', (data) => {
     ballSpeedY = data.ballSpeedY;
+    ballX = data.ballX;
+    ballY = data.ballY;
   });
 
   socket.on('changeMade1', (data) => {
@@ -122,11 +124,11 @@ function moveEverything() {
   if (ballX < 1) {
     if (ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
-      if (player === 2) {
-        var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT / 2);
-        ballSpeedY = deltaY * 0.35;
-        socket.emit("change-ball1", { ballSpeedY, name });
-      }
+      // if (player === 1) {
+      var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT / 2);
+      ballSpeedY = deltaY * 0.35;
+      socket.emit("change-ball1", { ballSpeedY, name, ballX, ballY });
+      // }
     }
     else {
       player1Score--;
@@ -137,11 +139,11 @@ function moveEverything() {
   if (ballX > canvas.width - 1) {
     if (ballY > paddle2Y && ballY < paddle2Y + PADDLE_HEIGHT) {
       ballSpeedX = -ballSpeedX;
-      if (player === 1) {
-        var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT / 2);
-        ballSpeedY = deltaY * 0.35;
-        socket.emit("change-ball1", { ballSpeedY, name });
-      }
+      // if (player === 2) {
+      var deltaY = ballY - (paddle2Y + PADDLE_HEIGHT / 2);
+      ballSpeedY = deltaY * 0.35;
+      socket.emit("change-ball1", { ballSpeedY, name, ballX, ballY });
+      // }
     }
     else {
       player2Score--;

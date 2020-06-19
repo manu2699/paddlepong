@@ -25,7 +25,7 @@ io.on("connection", socket => {
   });
 
   socket.on("change-arb", data => {
-    console.log("arb", data)
+    // console.log("arb", data)
     io.to(data.name).emit("change-arb-recieve", data)
   });
 
