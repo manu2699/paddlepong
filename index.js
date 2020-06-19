@@ -13,12 +13,24 @@ var io = require("socket.io")(server);
 io.on("connection", socket => {
 
   socket.on("join", (name) => {
-    // console.log(name)
     socket.join(name);
-  })
+  });
 
-  socket.on("change", data => {
-    // console.log(data)
-    io.to(data.name).emit("changeMade", data)
-  })
+  socket.on("change1", data => {
+    io.to(data.name).emit("changeMade1", data)
+  });
+
+  socket.on("change2", data => {
+    io.to(data.name).emit("changeMade2", data)
+  });
+
+  socket.on("change-arb", data => {
+    console.log("arb", data)
+    io.to(data.name).emit("change-arb-recieve", data)
+  });
+
+  socket.on("change-ball1", data => {
+    io.to(data.name).emit("change-ball1-get", data);
+  });
+
 });
